@@ -1,16 +1,19 @@
+using System;
 using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private EnvDetectionController envDetectionController;
+
+    private void Start()
     {
-        
+        envDetectionController.OnWebcamScreenshotCollected += RecognizeUserEnv;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void RecognizeUserEnv(Texture2D passthroughCamTexture2D)
     {
-        
+        Debug.Log($"~~~ received snapshot pixels: ({passthroughCamTexture2D.width}, {passthroughCamTexture2D.height})");
     }
+    
+    
 }
