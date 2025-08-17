@@ -1,16 +1,31 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnvDetectionController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public bool IsDetectingEnvironment { get; set; }
+
+    [SerializeField] private float webcamDetectionTimeInterval = 0.5f;
+    [SerializeField] private WebcamController webcamController;
+
+    private void Start()
     {
+        IsDetectingEnvironment = true;
         
+        StartCoroutine(KeepQueringWebcamImage());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator KeepQueringWebcamImage()
     {
-        
+        while (IsDetectingEnvironment)
+        {
+            GetWebcamImage();
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    private void GetWebcamImage()
+    {
+        Debug.Log("Getting webcam image");
     }
 }

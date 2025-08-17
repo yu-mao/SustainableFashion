@@ -1386,6 +1386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6050ae43123b49dcba2da8415e01c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  webcamDetectionTimeInterval: 0.5
+  webcamController: {fileID: 1427095849}
 --- !u!4 &1326019065
 Transform:
   m_ObjectHideFlags: 0
