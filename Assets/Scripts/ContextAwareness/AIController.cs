@@ -38,8 +38,9 @@ public class AIController : MonoBehaviour
 {
     [Header("Environment Detection Reference")]
     [SerializeField] private EnvDetectionController envDetectionController;
-    
+
     [Header("AI Reference")]
+    [SerializeField] private Texture2D tempTexture2D;
     [SerializeField] private ApiConfig apiConfig;
     private string apiUrl = "https://api.openai.com/v1/chat/completions";
 
@@ -56,28 +57,40 @@ public class AIController : MonoBehaviour
     [Button]
     public void SendAIRequest()
     {
-        StartCoroutine(GetChatResponse("", ParseChatResponse));
+        StartCoroutine(GetChatResponse("", tempTexture2D, ParseChatResponse));
     }
 
-    private IEnumerator GetChatResponse(string prompt, Action<string> callback)
+    private IEnumerator GetChatResponse(string prompt, Texture2D passthroughCamTexture2D, Action<string> callback)
     {
         if(string.IsNullOrEmpty(apiConfig.apiKey))
             yield break;
+
+        string imageDataUrl = EncodeTexture2DInput(passthroughCamTexture2D);
+        if (imageDataUrl == null)
+            yield break;
         
-        var jsonData = new
+        // Build request body
+        var requestBody = new
         {
             model = "gpt-4o",
-            messages = new[]
+            messages = new object[]
             {
-                new { role = "system", content = "You are a helpful assistant" },
-                new { role = "user", content = "hello?" },
+                new {role ="system", content="You are a helpful assistant"},
+                new {
+                    role = "user",
+                    content = new object[] {
+                        new { type = "text", text = "Is the image of a festival or office environment?" },
+                        new { type = "image_url", image_url = new { url = imageDataUrl } }
+                    }
+                },
             },
             max_tokens = 500
         };
-        string jsonString = JsonConvert.SerializeObject(jsonData);
+        
+        string serializedRequestBody = JsonConvert.SerializeObject(requestBody);
 
         UnityWebRequest request = new UnityWebRequest(apiUrl, "POST");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonString);
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(serializedRequestBody);
         request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         
@@ -96,6 +109,23 @@ public class AIController : MonoBehaviour
         {
             callback?.Invoke(request.downloadHandler.text);
         }
+    }
+
+    private string EncodeTexture2DInput(Texture2D texture)
+    {
+        try
+        {
+            byte[] bytes = texture.EncodeToPNG();
+            string base64Image = Convert.ToBase64String(bytes);
+            string imageDataUrl = "data:image/png;base64," + base64Image;
+            return imageDataUrl;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("EncodeTexture2Dinput error: " + e);
+            return null;
+        }
+
     }
 
     private void ParseChatResponse(string response)

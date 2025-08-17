@@ -459,6 +459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   envDetectionController: {fileID: 1326019064}
+  tempTexture2D: {fileID: 2800000, guid: 98a0c6c9e8cee4450ba77d5922437d94, type: 3}
   apiConfig: {fileID: 11400000, guid: 78c6792730cac4587a3cbdb7f481865a, type: 2}
 --- !u!1 &277026814
 GameObject:
