@@ -12,20 +12,15 @@ public class EnvDetectionController : MonoBehaviour
     {
         IsDetectingEnvironment = true;
         
-        StartCoroutine(KeepQueringWebcamImage());
+        StartCoroutine(RepeatGettingCameraScreenshot());
     }
 
-    private IEnumerator KeepQueringWebcamImage()
+    private IEnumerator RepeatGettingCameraScreenshot()
     {
         while (IsDetectingEnvironment)
         {
-            GetWebcamImage();
+            webcamController.MakeCameraSnapshot();
             yield return new WaitForSeconds(0.5f);
         }
-    }
-
-    private void GetWebcamImage()
-    {
-        Debug.Log("Getting webcam image");
     }
 }
