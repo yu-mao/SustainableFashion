@@ -95,6 +95,17 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.ai.inference": {
+      "version": "2.2.1",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.8.17",
+        "com.unity.collections": "2.4.3",
+        "com.unity.modules.imageconversion": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.8",
       "depth": 0,
@@ -353,6 +364,36 @@
         "com.unity.xr.management": "4.4.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.unity.xr.openxr": {
+      "version": "1.15.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.inputsystem": "1.6.3",
+        "com.unity.xr.core-utils": "2.3.0",
+        "com.unity.xr.management": "4.4.0",
+        "com.unity.xr.legacyinputhelpers": "2.1.2"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "jp.keijiro.bodypix": {
+      "version": "4.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "jp.keijiro.klak.nnutils": "3.0.1"
+      },
+      "url": "https://registry.npmjs.com"
+    },
+    "jp.keijiro.klak.nnutils": {
+      "version": "3.0.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ai.inference": "2.2.1"
+      },
+      "url": "https://registry.npmjs.com"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
