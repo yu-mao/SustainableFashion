@@ -36,6 +36,8 @@ public class Message
 
 public class AIController : MonoBehaviour
 {
+    public event Action<string> OnAIResponded;
+    
     [Header("Environment Detection Reference")]
     [SerializeField] private EnvDetectionController envDetectionController;
 
@@ -51,23 +53,26 @@ public class AIController : MonoBehaviour
 
     private void RecognizeUserEnv(Texture2D passthroughCamTexture2D)
     {
-        Debug.Log($"~~~ received snapshot pixels: ({passthroughCamTexture2D.width}, {passthroughCamTexture2D.height})");
+        StartCoroutine(GetChatResponse(passthroughCamTexture2D, ParseChatResponse));
     }
 
     [Button]
     public void SendAIRequest()
     {
-        StartCoroutine(GetChatResponse("", tempTexture2D, ParseChatResponse));
+        StartCoroutine(GetChatResponse(tempTexture2D, ParseChatResponse));
     }
 
-    private IEnumerator GetChatResponse(string prompt, Texture2D passthroughCamTexture2D, Action<string> callback)
+    private IEnumerator GetChatResponse(Texture2D passthroughCamTexture2D, Action<string> callback)
     {
         if(string.IsNullOrEmpty(apiConfig.apiKey))
             yield break;
 
         string imageDataUrl = EncodeTexture2DInput(passthroughCamTexture2D);
         if (imageDataUrl == null)
+        {
+            Debug.Log("~~~ imageDataUrl is null");
             yield break;
+        }
         
         // Build request body
         var requestBody = new
@@ -79,7 +84,7 @@ public class AIController : MonoBehaviour
                 new {
                     role = "user",
                     content = new object[] {
-                        new { type = "text", text = "Is the image of a festival or office environment?" },
+                        new { type = "text", text = "Is the image of a festival or office environment? Answer festival, office, or unclear." },
                         new { type = "image_url", image_url = new { url = imageDataUrl } }
                     }
                 },
@@ -125,7 +130,6 @@ public class AIController : MonoBehaviour
             Debug.LogError("EncodeTexture2Dinput error: " + e);
             return null;
         }
-
     }
 
     private void ParseChatResponse(string response)
@@ -133,6 +137,7 @@ public class AIController : MonoBehaviour
         ChatCompletionResponse parsedResponse = JsonConvert.DeserializeObject<ChatCompletionResponse>(response);
         string aiReply = parsedResponse.Choices[0].Message.Content;
         Debug.Log("~~~ AI response: " + aiReply);
+        OnAIResponded?.Invoke(aiReply);
     }
 
 }
