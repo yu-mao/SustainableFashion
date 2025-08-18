@@ -34,9 +34,11 @@ public class EnvDetectionController : MonoBehaviour
     [SerializeField] private Texture imgEnvFestival;
     [SerializeField] private Texture imgEnvSupermarket;
     [SerializeField] private Texture imgEnvTransport;
+    [SerializeField] private Texture imgEnvHome;
     [SerializeField] private Texture imgEnvPark;
     
     private UserEnvType userEnvType = UserEnvType.Others;
+    private bool isEnvDetectionUIChanging = false;
 
     [Button]
     public void ChangeUserEnv()
@@ -81,34 +83,78 @@ public class EnvDetectionController : MonoBehaviour
         if (aiResponse.Contains("office", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Office)
         {
             userEnvType = UserEnvType.Office;
+            UpdateEnvDetectionUI(userEnvType);
             OnUserEnvChanged?.Invoke(userEnvType);
         }
         else if (aiResponse.Contains("festival", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
         {
             userEnvType = UserEnvType.Festival;
+            UpdateEnvDetectionUI(userEnvType);
             OnUserEnvChanged?.Invoke(userEnvType);
         }
         else if (aiResponse.Contains("supermarket", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
         {
             userEnvType = UserEnvType.Supermarket;
+            UpdateEnvDetectionUI(userEnvType);
             OnUserEnvChanged?.Invoke(userEnvType);
         }
         else if (aiResponse.Contains("home", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
         {
             userEnvType = UserEnvType.Home;
+            UpdateEnvDetectionUI(userEnvType);
             OnUserEnvChanged?.Invoke(userEnvType);
         }
         else if (aiResponse.Contains("park", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
         {
             userEnvType = UserEnvType.Park;
+            UpdateEnvDetectionUI(userEnvType);
             OnUserEnvChanged?.Invoke(userEnvType);
         }
         else if (aiResponse.Contains("transport", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
         {
             userEnvType = UserEnvType.Transport;
+            UpdateEnvDetectionUI(userEnvType);
             OnUserEnvChanged?.Invoke(userEnvType);
         }
         // ignore the case when user env type is unclear/others 
+    }
+
+    private void UpdateEnvDetectionUI(UserEnvType envType)
+    {
+        switch (envType)
+        {
+            case UserEnvType.Office:
+                envDetectionNotification.texture = imgEnvOffice;
+                break;
+            case UserEnvType.Festival:
+                envDetectionNotification.texture = imgEnvFestival;
+                break;
+            case UserEnvType.Home:
+                envDetectionNotification.texture = imgEnvHome;
+                break;
+            case UserEnvType.Park:
+                envDetectionNotification.texture = imgEnvPark;
+                break;
+            case UserEnvType.Transport:
+                envDetectionNotification.texture = imgEnvTransport;
+                break;
+            case UserEnvType.Supermarket:
+                envDetectionNotification.texture = imgEnvSupermarket;
+                break;
+        }
+
+        DisplayEnvDetectionUI();
+    }
+
+    private IEnumerator DisplayEnvDetectionUI()
+    {
+        if (isEnvDetectionUIChanging) yield break;
+        
+        envDetectionNotification.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        
+        envDetectionNotification.gameObject.SetActive(false);
+        yield break;
     }
 }
 
