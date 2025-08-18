@@ -45,6 +45,7 @@ public class BodyPixDriver : MonoBehaviour
         keypointScores = new float[Body.KeypointCount];
     }
 
+    bool _loggedFirstInfer = false;
     void Update()
     {
         // Late assignment? Initialize when input/asset becomes available.
@@ -64,5 +65,15 @@ public class BodyPixDriver : MonoBehaviour
             keypoints[i] = span[i].Position;     // pixel coords (see note)
             keypointScores[i] = span[i].Score;   // confidence
         }
+
+        if (!_loggedFirstInfer)
+        {
+            int L = (int)Body.KeypointID.LeftShoulder;
+            int R = (int)Body.KeypointID.RightShoulder;
+            Debug.Log($"[BodyPix] Mask {personMask.width}x{personMask.height}  " +
+                      $"L={keypoints[L]} s={keypointScores[L]:0.00}  R={keypoints[R]} s={keypointScores[R]:0.00}");
+            _loggedFirstInfer = true;
+        }
+
     }
 }

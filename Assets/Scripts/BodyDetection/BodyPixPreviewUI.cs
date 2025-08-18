@@ -1,6 +1,8 @@
 // BodyPixPreviewUI.cs
 using PassthroughCameraSamples;
 
+using TMPro;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +14,7 @@ public class BodyPixPreviewUI : MonoBehaviour
     public RawImage maskView;                  // segmentation preview (optional)
 
 
-    public Text hud;
+    public TMP_Text debugText;
     public WebCamTextureManager camMgr;         // from your scene
     public BodyPixDriver bodypix;               // from your scene
 
@@ -25,8 +27,8 @@ public class BodyPixPreviewUI : MonoBehaviour
             maskView.texture = driver.personMask;
 
 
-        if (!hud) return;
-        hud.text =
+        if (!debugText) return;
+        debugText.text =
             $"Cam tex: {(camMgr && camMgr.WebCamTexture ? "OK" : "NULL")}\n" +
             $"Downsample RT: {(downsampler && downsampler.downsampled256 ? "OK" : "NULL")}\n" +
             $"BodyPix resource: {(bodypix && bodypix.resourceSet ? "OK" : "NULL")}\n" +
