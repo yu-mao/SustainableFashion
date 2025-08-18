@@ -1049,7 +1049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &782996020
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2122,12 +2122,12 @@ MonoBehaviour:
   normOffset: {x: 0, y: 0}
   targetKeypoint: 6
   minScore: 0
-  prefab: {fileID: 4656850369410292209, guid: 4efb435f89970794d9684c1be0239a5d, type: 3}
+  prefab: {fileID: 2557031615505815533, guid: 03eb3b574fddaf94b8104f09cdb02495, type: 3}
   worldParent: {fileID: 0}
   worldDepthMeters: 1.6
   worldLocalOffset: {x: 0, y: 0, z: 0}
-  worldLocalScale: {x: 1, y: 1, z: 1}
-  rotationMode: 1
+  worldLocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  rotationMode: 0
   otherKeypoint: 6
   rotationOffsetDeg: 0
   generateOnStart: 1
