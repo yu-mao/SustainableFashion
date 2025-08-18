@@ -1,11 +1,16 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum UserEnvType
 {
     Office,
     Festival,
+    Supermarket,
+    Home,
+    Park,
+    Transport,
     Others
 }
 
@@ -21,6 +26,14 @@ public class EnvDetectionController : MonoBehaviour
     
     [Header("AI reference")]
     [SerializeField] private AIController aiController;
+
+    [Header("UI reference")]
+    [SerializeField] private RawImage envDetectionNotification;
+    [SerializeField] private Texture imgEnvOffice;
+    [SerializeField] private Texture imgEnvFestival;
+    [SerializeField] private Texture imgEnvSupermarket;
+    [SerializeField] private Texture imgEnvTransport;
+    [SerializeField] private Texture imgEnvPark;
     
     private UserEnvType userEnvType = UserEnvType.Others;
 
