@@ -124,8 +124,6 @@ public class TiePlacer : MonoBehaviour
 
         angle += 180;
 
-        // IMPORTANT: remove the old angle += 180f flip
-        // angle += 180f;  // <-- DELETE / DO NOT USE
 
         // Position: step from neck down along torso a few pixels
         Vector2 targetPos;
