@@ -47,3 +47,9 @@ MonoBehaviour:
   webcamDetectionTimeInterval: 2
   webcamController: {fileID: 0}
   aiController: {fileID: 0}
+  envDetectionNotification: {fileID: 0}
+  imgEnvOffice: {fileID: 2800000, guid: 290868a088b9f46a1be2324bddbfcc53, type: 3}
+  imgEnvFestival: {fileID: 2800000, guid: a9ce69b43de3c4ccf88dc27ac1221a98, type: 3}
+  imgEnvSupermarket: {fileID: 2800000, guid: 939d8427324db4c038b7d39449b1883d, type: 3}
+  imgEnvTransport: {fileID: 2800000, guid: 554feaaad8e924c60b21fb96baf04b91, type: 3}
+  imgEnvPark: {fileID: 2800000, guid: 724a489342d2a4ddda8b26ba994a3f20, type: 3}

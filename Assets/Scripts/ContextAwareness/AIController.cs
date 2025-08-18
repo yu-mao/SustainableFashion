@@ -80,11 +80,17 @@ public class AIController : MonoBehaviour
             model = "gpt-4o",
             messages = new object[]
             {
-                new {role ="system", content="You are a helpful assistant"},
-                new {
+                new { role = "system", content = "You are a helpful assistant" },
+                new
+                {
                     role = "user",
-                    content = new object[] {
-                        new { type = "text", text = "Is the image of a festival or office environment? Answer festival, office, or unclear." },
+                    content = new object[]
+                    {
+                        new
+                        {
+                            type = "text", text = "Which of the following option describe the image the best? " +
+                                                  "Answer office, festival, supermarket, home, park, transport, or unclear."
+                        },
                         new { type = "image_url", image_url = new { url = imageDataUrl } }
                     }
                 },
