@@ -1528,6 +1528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   webcamDetectionTimeInterval: 2
   webcamController: {fileID: 1427095849}
+  aiController: {fileID: 269785150}
 --- !u!4 &1326019065
 Transform:
   m_ObjectHideFlags: 0
@@ -1925,6 +1926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c21d0dbc21d74adcb5e5136d40b95eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  envDetectionController: {fileID: 1326019064}
 --- !u!1 &1688620292
 GameObject:
   m_ObjectHideFlags: 0
