@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using NaughtyAttributes;
 
 public enum UserEnvType
 {
@@ -36,6 +37,19 @@ public class EnvDetectionController : MonoBehaviour
     [SerializeField] private Texture imgEnvPark;
     
     private UserEnvType userEnvType = UserEnvType.Others;
+
+    [Button]
+    public void ChangeUserEnv()
+    {
+        int currIndexUserEnv = (int)userEnvType;
+        int totalCount = Enum.GetValues(typeof(UserEnvType)).Length;
+        if (currIndexUserEnv >= totalCount - 1)
+            currIndexUserEnv = 0;
+        else
+            currIndexUserEnv += 1;
+        userEnvType = (UserEnvType)currIndexUserEnv;
+        OnUserEnvChanged?.Invoke(userEnvType);
+    }
 
     private void Start()
     {
@@ -74,7 +88,29 @@ public class EnvDetectionController : MonoBehaviour
             userEnvType = UserEnvType.Festival;
             OnUserEnvChanged?.Invoke(userEnvType);
         }
+        else if (aiResponse.Contains("supermarket", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
+        {
+            userEnvType = UserEnvType.Supermarket;
+            OnUserEnvChanged?.Invoke(userEnvType);
+        }
+        else if (aiResponse.Contains("home", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
+        {
+            userEnvType = UserEnvType.Home;
+            OnUserEnvChanged?.Invoke(userEnvType);
+        }
+        else if (aiResponse.Contains("park", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
+        {
+            userEnvType = UserEnvType.Park;
+            OnUserEnvChanged?.Invoke(userEnvType);
+        }
+        else if (aiResponse.Contains("transport", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
+        {
+            userEnvType = UserEnvType.Transport;
+            OnUserEnvChanged?.Invoke(userEnvType);
+        }
         // ignore the case when user env type is unclear/others 
     }
 }
 
+
+// TODO: add left pinch to switch between user env type 
