@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EnvDetectionController envDetectionController;
 
     [Header("Clothes Overlay reference")] 
-    [SerializeField] private List<GameObject> officClothesOverlayA;
-    [SerializeField] private List<GameObject> officClothesOverlayB;
+    [SerializeField] private List<GameObject> officeClothesOverlayA;
+    [SerializeField] private List<GameObject> officeClothesOverlayB;
 
     
     [Header("Debug Reference")]
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     private void GetClothesOverlay(UserEnvType envType)
     {
         // TODO: get clothes prefab according to given envType 
-        List<GameObject> chosenClothesOverlay = officClothesOverlayA;
+        List<GameObject> chosenClothesOverlay = officeClothesOverlayA;
 
         ChangeClothesOverlay?.Invoke(new Dictionary<UserEnvType, List<GameObject>>()
             { { envType, chosenClothesOverlay } });

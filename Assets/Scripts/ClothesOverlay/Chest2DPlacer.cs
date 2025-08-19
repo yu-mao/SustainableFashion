@@ -2,12 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using BodyPix;
 
-public class TiePlacer : MonoBehaviour
+public class Chest2DPlacer : MonoBehaviour
 {
     [Header("Refs")]
     public BodyPixDriver driver;
     public RectTransform hudCanvas;     // HUD Canvas RectTransform
-    public RectTransform tieUI;         // tie Image RectTransform (pivot 0.5, 1)
+    public RectTransform UIObject;      // tie Image RectTransform (pivot 0.5, 1)
     public RectTransform videoRect;     // SAME rect you use in KeypointOverlay
     public Camera canvasCamera;         // CenterEyeAnchor (add this)
 
@@ -41,10 +41,10 @@ public class TiePlacer : MonoBehaviour
     void Awake()
     {
         // Ensure knot/pivot feels right (top-center)
-        if (tieUI)
+        if (UIObject)
         {
-            tieUI.anchorMin = tieUI.anchorMax = new Vector2(0.5f, 0.5f);
-            tieUI.pivot = new Vector2(0.5f, 1.0f);
+            UIObject.anchorMin = UIObject.anchorMax = new Vector2(0.5f, 0.5f);
+            UIObject.pivot = new Vector2(0.5f, 1.0f);
         }
     }
 
@@ -86,8 +86,8 @@ public class TiePlacer : MonoBehaviour
 
     void LateUpdate()
     {
-        if (!driver || driver.keypoints == null || driver.personMask == null || !tieUI || !hudCanvas)
-        { if (tieUI) tieUI.gameObject.SetActive(false); _hasPrev = false; return; }
+        if (!driver || driver.keypoints == null || driver.personMask == null || !UIObject || !hudCanvas)
+        { if (UIObject) UIObject.gameObject.SetActive(false); _hasPrev = false; return; }
 
         int L = (int)Body.KeypointID.LeftShoulder;
         int R = (int)Body.KeypointID.RightShoulder;
@@ -95,11 +95,11 @@ public class TiePlacer : MonoBehaviour
         int RH = (int)Body.KeypointID.RightHip;
 
         float sL = driver.keypointScores[L], sR = driver.keypointScores[R];
-        if (Mathf.Max(sL, sR) < minScore) { tieUI.gameObject.SetActive(false); _hasPrev = false; return; }
+        if (Mathf.Max(sL, sR) < minScore) { UIObject.gameObject.SetActive(false); _hasPrev = false; return; }
 
         if (!MapToCanvasLocal(driver.keypoints[L], out var ls) ||
             !MapToCanvasLocal(driver.keypoints[R], out var rs))
-        { tieUI.gameObject.SetActive(false); _hasPrev = false; return; }
+        { UIObject.gameObject.SetActive(false); _hasPrev = false; return; }
 
         // neck & shoulder vector in CANVAS local
         Vector2 sMid = (ls + rs) * 0.5f;
@@ -150,24 +150,24 @@ public class TiePlacer : MonoBehaviour
         }
 
         // Apply
-        tieUI.gameObject.SetActive(true);
-        tieUI.anchoredPosition = _posSmoothed;
-        tieUI.rotation = Quaternion.Euler(0, 0, _angSmoothed);
+        UIObject.gameObject.SetActive(true);
+        UIObject.anchoredPosition = _posSmoothed;
+        UIObject.rotation = Quaternion.Euler(0, 0, _angSmoothed);
 
         if (useFixedSizeFirst)
         {
-            tieUI.sizeDelta = fixedSize;
+            UIObject.sizeDelta = fixedSize;
         }
         else
         {
             float H = Mathf.Clamp(shoulderLen * heightFromShoulder, heightClamp.x, heightClamp.y);
             float W = Mathf.Clamp(shoulderLen * widthFromShoulder, widthClamp.x, widthClamp.y);
-            tieUI.sizeDelta = new Vector2(W, H);
+            UIObject.sizeDelta = new Vector2(W, H);
         }
 
-        tieUI.SetAsLastSibling();
+        UIObject.SetAsLastSibling();
 
         if (Time.frameCount % 90 == 0)
-            Debug.Log($"[Tie] len={shoulderLen:0.0} pos={tieUI.anchoredPosition} size={tieUI.sizeDelta} angle={_angSmoothed:0.0}");
+            Debug.Log($"[Tie] len={shoulderLen:0.0} pos={UIObject.anchoredPosition} size={UIObject.sizeDelta} angle={_angSmoothed:0.0}");
     }
 }
