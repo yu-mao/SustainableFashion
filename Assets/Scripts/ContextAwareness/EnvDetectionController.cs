@@ -34,9 +34,11 @@ public class EnvDetectionController : MonoBehaviour
     [SerializeField] private Texture imgEnvFestival;
     [SerializeField] private Texture imgEnvSupermarket;
     [SerializeField] private Texture imgEnvTransport;
+    [SerializeField] private Texture imgEnvHome;
     [SerializeField] private Texture imgEnvPark;
     
     private UserEnvType userEnvType = UserEnvType.Others;
+    private bool isEnvDetectionUIChanging = false;
 
     [Button]
     public void ChangeUserEnv()
@@ -55,6 +57,7 @@ public class EnvDetectionController : MonoBehaviour
     {
         IsDetectingEnvironment = true;
         aiController.OnAIResponded += ParseUserEnvType;
+        OnUserEnvChanged += UpdateEnvDetectionUI;
         
         StartCoroutine(RepeatGettingCameraScreenshot());
     }
@@ -93,7 +96,7 @@ public class EnvDetectionController : MonoBehaviour
             userEnvType = UserEnvType.Supermarket;
             OnUserEnvChanged?.Invoke(userEnvType);
         }
-        else if (aiResponse.Contains("home", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
+        else if (aiResponse.Contains("kitchen", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
         {
             userEnvType = UserEnvType.Home;
             OnUserEnvChanged?.Invoke(userEnvType);
@@ -109,6 +112,53 @@ public class EnvDetectionController : MonoBehaviour
             OnUserEnvChanged?.Invoke(userEnvType);
         }
         // ignore the case when user env type is unclear/others 
+    }
+
+    private void UpdateEnvDetectionUI(UserEnvType envType)
+    {
+        Debug.Log("~~~ Update envDetectionUI: " + envType);
+        switch (envType)
+        {
+            case UserEnvType.Office:
+                envDetectionNotification.texture = imgEnvOffice;
+                StartCoroutine(DisplayEnvDetectionUI());
+                break;
+            case UserEnvType.Festival:
+                envDetectionNotification.texture = imgEnvFestival;
+                StartCoroutine(DisplayEnvDetectionUI());
+                break;
+            case UserEnvType.Home:
+                envDetectionNotification.texture = imgEnvHome;
+                StartCoroutine(DisplayEnvDetectionUI());
+                break;
+            case UserEnvType.Park:
+                envDetectionNotification.texture = imgEnvPark;
+                StartCoroutine(DisplayEnvDetectionUI());
+                break;
+            case UserEnvType.Transport:
+                envDetectionNotification.texture = imgEnvTransport;
+                StartCoroutine(DisplayEnvDetectionUI());
+                break;
+            case UserEnvType.Supermarket:
+                envDetectionNotification.texture = imgEnvSupermarket;
+                StartCoroutine(DisplayEnvDetectionUI());
+                break;
+        }
+
+        DisplayEnvDetectionUI();
+    }
+
+    private IEnumerator DisplayEnvDetectionUI()
+    {
+        if (isEnvDetectionUIChanging) yield break;
+        
+        isEnvDetectionUIChanging = true;
+        envDetectionNotification.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        
+        envDetectionNotification.gameObject.SetActive(false);
+        isEnvDetectionUIChanging = false;
+        yield break;
     }
 }
 

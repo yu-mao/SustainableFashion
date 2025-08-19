@@ -89,7 +89,7 @@ public class AIController : MonoBehaviour
                         new
                         {
                             type = "text", text = "Which of the following option describe the image the best? " +
-                                                  "Answer office, festival, supermarket, home, park, transport, or unclear."
+                                                  "Answer office, festival, supermarket, kitchen, park, transport, or unclear."
                         },
                         new { type = "image_url", image_url = new { url = imageDataUrl } }
                     }
@@ -142,7 +142,7 @@ public class AIController : MonoBehaviour
     {
         ChatCompletionResponse parsedResponse = JsonConvert.DeserializeObject<ChatCompletionResponse>(response);
         string aiReply = parsedResponse.Choices[0].Message.Content;
-        Debug.Log("~~~ AI response: " + aiReply);
+        // Debug.Log("~~~ AI response: " + aiReply);
         OnAIResponded?.Invoke(aiReply);
     }
 

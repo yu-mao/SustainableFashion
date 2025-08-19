@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     
     [Header("Debug Reference")]
-    [SerializeField] private Hand leftHand;
+    [SerializeField] private OVRHand leftHand;
 
     private void Start()
     {
@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (leftHand.GetFingerIsPinching(HandFinger.Index))
+        if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
+        // if (leftHand.GetFingerIsPinching(OVRHand.HandFinger.Index))
             envDetectionController.ChangeUserEnv();
     }
 
