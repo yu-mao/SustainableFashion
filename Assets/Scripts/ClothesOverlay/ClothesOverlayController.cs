@@ -147,6 +147,7 @@ public class Keypoint3dObjectPreset
     [Header("Prefab & Placement")]
     public GameObject prefab;              // your 3D object (duck/wing/etc.)
     public Transform worldParent;          // default = canvasCamera.transform
+    public Vector3 worldLocalOffset = Vector3.zero; // small tweak in local space after placement
     public Vector3 worldLocalScale = Vector3.one;
 
     [Header("Rotation")]

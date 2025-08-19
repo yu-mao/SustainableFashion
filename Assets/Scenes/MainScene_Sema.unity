@@ -700,13 +700,25 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
+      propertyPath: clothesPresetsDatabase.Array.data[3].keypoint3DObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
       propertyPath: clothesPresetsDatabase.Array.data[0].keypoint3DObjects.Array.data[0].prefab
       value: 
       objectReference: {fileID: 2557031615505815533, guid: 03eb3b574fddaf94b8104f09cdb02495, type: 3}
     - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
       propertyPath: clothesPresetsDatabase.Array.data[2].keypoint3DObjects.Array.data[0].prefab
       value: 
+      objectReference: {fileID: 8678544427632972643, guid: fb63c52af4e0b4a229f8ee6dec4c9505, type: 3}
+    - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
+      propertyPath: clothesPresetsDatabase.Array.data[2].keypoint3DObjects.Array.data[1].prefab
+      value: 
       objectReference: {fileID: 6676920955255693048, guid: ee0caa53dec154aff988f2edac62206f, type: 3}
+    - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
+      propertyPath: clothesPresetsDatabase.Array.data[3].keypoint3DObjects.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 3127094869449369784, guid: 50c1c1dac936744f280ec0a386e15684, type: 3}
     - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
       propertyPath: clothesPresetsDatabase.Array.data[0].keypoint3DObjects.Array.data[0].worldParent
       value: 
@@ -716,12 +728,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 529160542}
     - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
+      propertyPath: clothesPresetsDatabase.Array.data[2].keypoint3DObjects.Array.data[1].worldParent
+      value: 
+      objectReference: {fileID: 529160542}
+    - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
+      propertyPath: clothesPresetsDatabase.Array.data[3].keypoint3DObjects.Array.data[0].worldParent
+      value: 
+      objectReference: {fileID: 529160542}
+    - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
       propertyPath: clothesPresetsDatabase.Array.data[0].keypoint3DObjects.Array.data[0].targetKeypoint
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
       propertyPath: clothesPresetsDatabase.Array.data[2].keypoint3DObjects.Array.data[0].targetKeypoint
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
+      propertyPath: clothesPresetsDatabase.Array.data[2].keypoint3DObjects.Array.data[1].targetKeypoint
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
+      propertyPath: clothesPresetsDatabase.Array.data[3].keypoint3DObjects.Array.data[0].targetKeypoint
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
       propertyPath: clothesPresetsDatabase.Array.data[0].keypoint3DObjects.Array.data[0].worldLocalScale.x
@@ -737,15 +765,47 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
       propertyPath: clothesPresetsDatabase.Array.data[2].keypoint3DObjects.Array.data[0].worldLocalScale.x
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
       propertyPath: clothesPresetsDatabase.Array.data[2].keypoint3DObjects.Array.data[0].worldLocalScale.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
       propertyPath: clothesPresetsDatabase.Array.data[2].keypoint3DObjects.Array.data[0].worldLocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
+      propertyPath: clothesPresetsDatabase.Array.data[2].keypoint3DObjects.Array.data[1].worldLocalScale.x
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
+      propertyPath: clothesPresetsDatabase.Array.data[2].keypoint3DObjects.Array.data[1].worldLocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
+      propertyPath: clothesPresetsDatabase.Array.data[2].keypoint3DObjects.Array.data[1].worldLocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
+      propertyPath: clothesPresetsDatabase.Array.data[3].keypoint3DObjects.Array.data[0].worldLocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
+      propertyPath: clothesPresetsDatabase.Array.data[3].keypoint3DObjects.Array.data[0].worldLocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
+      propertyPath: clothesPresetsDatabase.Array.data[3].keypoint3DObjects.Array.data[0].worldLocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
+      propertyPath: clothesPresetsDatabase.Array.data[3].keypoint3DObjects.Array.data[0].worldLocalOffset.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
+      propertyPath: clothesPresetsDatabase.Array.data[3].keypoint3DObjects.Array.data[0].worldLocalOffset.z
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1308,6 +1368,7 @@ MonoBehaviour:
   neckAlongTorso: 12
   smoothRate: 12
   minScore: 0.25
+  DemoTestIsAlive: 0
 --- !u!4 &1331827099
 Transform:
   m_ObjectHideFlags: 0

@@ -64,6 +64,7 @@ public class Keypoint3DPlacer : MonoBehaviour
         targetKeypoint = preset.targetKeypoint;
         prefab = preset.prefab;
         worldParent = preset.worldParent;
+        worldLocalOffset = preset.worldLocalOffset;
         worldLocalScale = preset.worldLocalScale;
         rotationMode = preset.rotationMode;
         otherKeypoint = preset.otherKeypoint;
