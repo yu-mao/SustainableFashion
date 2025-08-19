@@ -57,6 +57,7 @@ public class EnvDetectionController : MonoBehaviour
     {
         IsDetectingEnvironment = true;
         aiController.OnAIResponded += ParseUserEnvType;
+        OnUserEnvChanged += UpdateEnvDetectionUI;
         
         StartCoroutine(RepeatGettingCameraScreenshot());
     }
@@ -83,37 +84,31 @@ public class EnvDetectionController : MonoBehaviour
         if (aiResponse.Contains("office", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Office)
         {
             userEnvType = UserEnvType.Office;
-            UpdateEnvDetectionUI(userEnvType);
             OnUserEnvChanged?.Invoke(userEnvType);
         }
         else if (aiResponse.Contains("festival", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
         {
             userEnvType = UserEnvType.Festival;
-            UpdateEnvDetectionUI(userEnvType);
             OnUserEnvChanged?.Invoke(userEnvType);
         }
         else if (aiResponse.Contains("supermarket", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
         {
             userEnvType = UserEnvType.Supermarket;
-            UpdateEnvDetectionUI(userEnvType);
             OnUserEnvChanged?.Invoke(userEnvType);
         }
         else if (aiResponse.Contains("home", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
         {
             userEnvType = UserEnvType.Home;
-            UpdateEnvDetectionUI(userEnvType);
             OnUserEnvChanged?.Invoke(userEnvType);
         }
         else if (aiResponse.Contains("park", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
         {
             userEnvType = UserEnvType.Park;
-            UpdateEnvDetectionUI(userEnvType);
             OnUserEnvChanged?.Invoke(userEnvType);
         }
         else if (aiResponse.Contains("transport", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
         {
             userEnvType = UserEnvType.Transport;
-            UpdateEnvDetectionUI(userEnvType);
             OnUserEnvChanged?.Invoke(userEnvType);
         }
         // ignore the case when user env type is unclear/others 
@@ -125,21 +120,27 @@ public class EnvDetectionController : MonoBehaviour
         {
             case UserEnvType.Office:
                 envDetectionNotification.texture = imgEnvOffice;
+                StartCoroutine(DisplayEnvDetectionUI());
                 break;
             case UserEnvType.Festival:
                 envDetectionNotification.texture = imgEnvFestival;
+                StartCoroutine(DisplayEnvDetectionUI());
                 break;
             case UserEnvType.Home:
                 envDetectionNotification.texture = imgEnvHome;
+                StartCoroutine(DisplayEnvDetectionUI());
                 break;
             case UserEnvType.Park:
                 envDetectionNotification.texture = imgEnvPark;
+                StartCoroutine(DisplayEnvDetectionUI());
                 break;
             case UserEnvType.Transport:
                 envDetectionNotification.texture = imgEnvTransport;
+                StartCoroutine(DisplayEnvDetectionUI());
                 break;
             case UserEnvType.Supermarket:
                 envDetectionNotification.texture = imgEnvSupermarket;
+                StartCoroutine(DisplayEnvDetectionUI());
                 break;
         }
 
@@ -150,10 +151,12 @@ public class EnvDetectionController : MonoBehaviour
     {
         if (isEnvDetectionUIChanging) yield break;
         
+        isEnvDetectionUIChanging = true;
         envDetectionNotification.gameObject.SetActive(true);
         yield return new WaitForSeconds(3f);
         
         envDetectionNotification.gameObject.SetActive(false);
+        isEnvDetectionUIChanging = false;
         yield break;
     }
 }

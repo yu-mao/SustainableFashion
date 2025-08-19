@@ -23,11 +23,11 @@ public class GameManager : MonoBehaviour
         envDetectionController.OnUserEnvChanged += ChangeClothesOverlayWrapper;
     }
 
-    private void Update()
-    {
-        if (leftHand.GetFingerIsPinching(HandFinger.Index))
-            envDetectionController.ChangeUserEnv();
-    }
+    // private void Update()
+    // {
+    //     if (leftHand.GetFingerIsPinching(HandFinger.Index))
+    //         envDetectionController.ChangeUserEnv();
+    // }
 
     private void ChangeClothesOverlayWrapper(UserEnvType envType)
     {
