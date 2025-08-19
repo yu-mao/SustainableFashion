@@ -38,6 +38,8 @@ public class Chest2DPlacer : MonoBehaviour
     float _angSmoothed;
     bool _hasPrev;
 
+    public bool DemoTestIsAlive = false;
+
     void Awake()
     {
         // Ensure knot/pivot feels right (top-center)
@@ -98,6 +100,10 @@ public class Chest2DPlacer : MonoBehaviour
 
     void LateUpdate()
     {
+        if (!DemoTestIsAlive)
+            return;
+
+
         if (!driver || driver.keypoints == null || driver.personMask == null || !UIObject || !hudCanvas)
         { if (UIObject) UIObject.gameObject.SetActive(false); _hasPrev = false; return; }
 

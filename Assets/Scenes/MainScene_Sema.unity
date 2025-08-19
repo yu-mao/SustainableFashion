@@ -686,11 +686,11 @@ PrefabInstance:
     - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
       propertyPath: clothesPresetsDatabase.Array.data[1].chest2dDesign
       value: 
-      objectReference: {fileID: 8196570767730013971}
+      objectReference: {fileID: 0}
     - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
       propertyPath: clothesPresetsDatabase.Array.data[3].chest2dDesign
       value: 
-      objectReference: {fileID: 493708761}
+      objectReference: {fileID: 0}
     - target: {fileID: 6684052800083558877, guid: 4d8d35ba2e4914ae99d017621b74a2c2, type: 3}
       propertyPath: clothesPresetsDatabase.Array.data[0].keypoint3DObjects.Array.size
       value: 1
@@ -1906,11 +1906,6 @@ PrefabInstance:
 --- !u!224 &8196570767730013970 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8520799422142063709, guid: 82b16d8429eab484b9ef1d6707f5186c, type: 3}
-  m_PrefabInstance: {fileID: 8196570767730013969}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &8196570767730013971 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4617666051842541171, guid: 82b16d8429eab484b9ef1d6707f5186c, type: 3}
   m_PrefabInstance: {fileID: 8196570767730013969}
   m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
