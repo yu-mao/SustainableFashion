@@ -100,6 +100,8 @@ public class ClothesOverlayController : MonoBehaviour
         //if (chosenPreset.chest2dDesign!=null)
         //    chosenPreset.chest2dDesign.gameObject.SetActive(false);
 
+        Chest2DPlacer.DemoTestIsAlive = false;
+
         // 3d 
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
@@ -112,7 +114,10 @@ public class ClothesOverlayController : MonoBehaviour
     {
         //2d
         if (chosenPreset.chest2dDesign)
+        {
             Chest2DPlacer.GenerateImageOnChest(chosenPreset.chest2dDesign);
+            Chest2DPlacer.DemoTestIsAlive = true;
+        }
 
         //3d
         foreach(Keypoint3dObjectPreset preset in chosenPreset.keypoint3DObjects)
