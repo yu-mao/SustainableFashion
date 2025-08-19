@@ -20,7 +20,7 @@ public class Keypoint3DPlacer : MonoBehaviour
 
     [Header("Target")]
     public Body.KeypointID targetKeypoint = Body.KeypointID.LeftShoulder;
-    [Range(0f, 1f)] public float minScore = 0.25f;
+    [Range(0f, 1f)] public float minScore = 0f;
 
     [Header("Prefab & Placement")]
     public GameObject prefab;              // your 3D object (duck/wing/etc.)

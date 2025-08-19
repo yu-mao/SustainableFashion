@@ -73,9 +73,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.9
+    - _ScaleRatioB: 0.73125
+    - _ScaleRatioC: 0.73125
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -189,7 +189,39 @@ MonoBehaviour:
     m_Height: 1023
   m_FontFeatureTable:
     m_MultipleSubstitutionRecords: []
-    m_LigatureSubstitutionRecords: []
+    m_LigatureSubstitutionRecords:
+    - m_ComponentGlyphIDs: 4e0000004a0000004f000000
+      m_LigatureGlyphID: 8049
+    - m_ComponentGlyphIDs: 4e0000004e00000014000000
+      m_LigatureGlyphID: 8046
+    - m_ComponentGlyphIDs: 4e0000004e00000013000000
+      m_LigatureGlyphID: 8045
+    - m_ComponentGlyphIDs: 4e00000043000000
+      m_LigatureGlyphID: 7906
+    - m_ComponentGlyphIDs: 4e00000048000000
+      m_LigatureGlyphID: 7485
+    - m_ComponentGlyphIDs: 4e0000004d000000
+      m_LigatureGlyphID: 7907
+    - m_ComponentGlyphIDs: 4e0000004e000000
+      m_LigatureGlyphID: 7482
+    - m_ComponentGlyphIDs: 4e00000054000000
+      m_LigatureGlyphID: 7897
+    - m_ComponentGlyphIDs: 4e00000014000000
+      m_LigatureGlyphID: 7893
+    - m_ComponentGlyphIDs: 4e00000013000000
+      m_LigatureGlyphID: 7488
+    - m_ComponentGlyphIDs: 4c00000044000000420000004d000000
+      m_LigatureGlyphID: 8052
+    - m_ComponentGlyphIDs: 4c0000004e00000014000000
+      m_LigatureGlyphID: 8047
+    - m_ComponentGlyphIDs: 4c0000004e00000013000000
+      m_LigatureGlyphID: 7891
+    - m_ComponentGlyphIDs: 4c00000048000000
+      m_LigatureGlyphID: 7486
+    - m_ComponentGlyphIDs: 4c0000004d000000
+      m_LigatureGlyphID: 7896
+    - m_ComponentGlyphIDs: 4c0000004e000000
+      m_LigatureGlyphID: 7484
     m_GlyphPairAdjustmentRecords: []
     m_MarkToBaseAdjustmentRecords: []
     m_MarkToMarkAdjustmentRecords: []
@@ -290,7 +322,7 @@ Texture2D:
   m_ColorSpace: 1
   m_PlatformBlob: 
   image data: 1
-  _typelessdata: cd
+  _typelessdata: 00
   m_StreamData:
     serializedVersion: 2
     offset: 0
