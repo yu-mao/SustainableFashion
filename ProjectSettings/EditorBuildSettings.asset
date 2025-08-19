@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SemaTest.unity
     guid: f01631cc4ad2e7d4f9708f8195118774
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Merged.unity
     guid: 4f6cfd154dc7942f59e7bd93af16cfd3
+  - enabled: 1
+    path: Assets/Scenes/MainScene_Jiayao.unity
+    guid: 2a1013070d87546ac8703af785ed9ff7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b64c70c33c01b4bc09fadae6260fd152, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

@@ -96,7 +96,7 @@ public class EnvDetectionController : MonoBehaviour
             userEnvType = UserEnvType.Supermarket;
             OnUserEnvChanged?.Invoke(userEnvType);
         }
-        else if (aiResponse.Contains("home", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
+        else if (aiResponse.Contains("kitchen", StringComparison.OrdinalIgnoreCase) && userEnvType != UserEnvType.Festival)
         {
             userEnvType = UserEnvType.Home;
             OnUserEnvChanged?.Invoke(userEnvType);
@@ -116,6 +116,7 @@ public class EnvDetectionController : MonoBehaviour
 
     private void UpdateEnvDetectionUI(UserEnvType envType)
     {
+        Debug.Log("~~~ Update envDetectionUI: " + envType);
         switch (envType)
         {
             case UserEnvType.Office:
