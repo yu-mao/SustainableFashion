@@ -1121,7 +1121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   driver: {fileID: 1037582748}
   hudCanvas: {fileID: 19052361}
-  tieUI: {fileID: 166059074}
+  UIObject: {fileID: 166059074}
   videoRect: {fileID: 782996020}
   canvasCamera: {fileID: 2101163721}
   coordsAreNormalized: 1
@@ -1711,6 +1711,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1928004871435949825, guid: 82b16d8429eab484b9ef1d6707f5186c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7846167805192808114, guid: 82b16d8429eab484b9ef1d6707f5186c, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
