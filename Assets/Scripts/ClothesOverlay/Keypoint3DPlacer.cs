@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using BodyPix;
+public enum RotationMode { None, FaceCamera, FaceCameraPlusScreenRoll, LookAtOtherKeypoint }
 
 public class Keypoint3DPlacer : MonoBehaviour
 {
@@ -28,14 +29,14 @@ public class Keypoint3DPlacer : MonoBehaviour
     public Vector3 worldLocalOffset = Vector3.zero; // small tweak in local space after placement
     public Vector3 worldLocalScale = Vector3.one;
 
-    public enum RotationMode { None, FaceCamera, FaceCameraPlusScreenRoll, LookAtOtherKeypoint }
+    
     [Header("Rotation")]
     public RotationMode rotationMode = RotationMode.FaceCamera;
     public Body.KeypointID otherKeypoint = Body.KeypointID.RightShoulder; // used for roll/look-at
     public float rotationOffsetDeg = 0f;
 
     [Header("Follow")]
-    public bool generateOnStart = true;
+    public bool generateOnStart = false;
     public bool followEveryFrame = true;
     public float followSmoothRate = 15f;
 
@@ -56,6 +57,19 @@ public class Keypoint3DPlacer : MonoBehaviour
     void Start()
     {
         if (generateOnStart) StartCoroutine(WaitForBodyPixThenSpawn());
+    }
+
+    public void GeneratePreset(Keypoint3dObjectPreset preset)
+    {
+        targetKeypoint = preset.targetKeypoint;
+        prefab = preset.prefab;
+        worldParent = preset.worldParent;
+        worldLocalScale = preset.worldLocalScale;
+        rotationMode = preset.rotationMode;
+        otherKeypoint = preset.otherKeypoint;
+        rotationOffsetDeg = preset.rotationOffsetDeg;
+
+        StartCoroutine(WaitForBodyPixThenSpawn());
     }
 
     System.Collections.IEnumerator WaitForBodyPixThenSpawn()

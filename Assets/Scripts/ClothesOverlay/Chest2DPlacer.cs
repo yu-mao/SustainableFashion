@@ -48,6 +48,18 @@ public class Chest2DPlacer : MonoBehaviour
         }
     }
 
+    public void GenerateImageOnChest(RectTransform chest2dDesign)
+    {
+        UIObject = chest2dDesign;
+
+        // Ensure knot/pivot feels right (top-center)
+        if (UIObject)
+        {
+            UIObject.anchorMin = UIObject.anchorMax = new Vector2(0.5f, 0.5f);
+            UIObject.pivot = new Vector2(0.5f, 1.0f);
+        }
+    }
+
     // --- SAME mapping as overlay: norm -> screen inside videoRect -> canvas local
     bool MapToCanvasLocal(Vector2 kp, out Vector2 local)
     {

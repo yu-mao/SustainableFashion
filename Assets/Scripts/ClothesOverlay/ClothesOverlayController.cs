@@ -3,22 +3,32 @@ using System.Collections.Generic;
 
 using BodyPix;
 
+using Unity.Multiplayer.Center.Common;
+
 using UnityEngine;
 
 public class ClothesOverlayController : MonoBehaviour
 {
     [Header("Environment Detection Reference")]
     [SerializeField] private EnvDetectionController envDetectionController;
+    
+    public Chest2DPlacer Chest2DPlacer;
+    public Keypoint3DPlacer Keypoint3DPlacer;
 
     public List<ClothesPreset> clothesPresetsDatabase = new List<ClothesPreset>();
     public Dictionary<UserEnvType, List<ClothesPreset>> clothesPresetsDictionary = new Dictionary<UserEnvType, List<ClothesPreset>>();
 
     public UserEnvType currentUserEnvType;
     public int currentMoodID;
+    public ClothesPreset chosenPreset;
+    public GameObject generatedObjectsParent;
+
+    public List <GameObject> chestImages = new List<GameObject>();
+
 
     private void Start()
     {
-        envDetectionController.OnUserEnvChanged += ChangeClothesOverlayWrapper;
+        envDetectionController.OnUserEnvChanged += ChangeEnvClothes;
 
         // populate the dictionary
         foreach (var preset in clothesPresetsDatabase)
@@ -35,17 +45,80 @@ public class ClothesOverlayController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch))
+            // if (leftHand.GetFingerIsPinching(OVRHand.HandFinger.Index))
+            envDetectionController.ChangeUserEnv();
+
+        if (OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.RTouch))
+            // if (leftHand.GetFingerIsPinching(OVRHand.HandFinger.Index))
+            ChangeMood();
+    }
+
     // button a changes env, button b changes mood-or though the list
     // get new items but disable-delete the old ones!! attach clothes to a parent when generated to delete
     // start with first list item from envtype
-    private void ChangeClothesOverlayWrapper(UserEnvType envType)
+    private void ChangeEnvClothes(UserEnvType envType)
     {
-        Debug.Log("~~~ detected user env type: " + envType);
-        GetClothesOverlay(envType);
+        DestroyPreviosClothes();
+
+        // find the first clothes from the list
+        if (clothesPresetsDictionary.ContainsKey(envType))
+        {
+            chosenPreset = clothesPresetsDictionary[envType][0];
+            currentUserEnvType = envType;
+            currentMoodID = 0;
+            GenerateNewClothes();
+        }
     }
 
-    private void GetClothesOverlay(UserEnvType envType)
+    private void ChangeMood()
     {
+        DestroyPreviosClothes();
+
+        if (currentMoodID == 0)
+        {
+            chosenPreset = clothesPresetsDictionary[currentUserEnvType][1];
+            currentMoodID = 1;
+        }else// ==1
+        {
+            chosenPreset = clothesPresetsDictionary[currentUserEnvType][0];
+            currentMoodID = 0;
+        }
+
+        GenerateNewClothes();
+    }
+
+    private void DestroyPreviosClothes()
+    {
+        //2d
+        foreach (var item in chestImages)
+        { 
+                item.SetActive(false);
+        }
+        //if (chosenPreset.chest2dDesign!=null)
+        //    chosenPreset.chest2dDesign.gameObject.SetActive(false);
+
+        // 3d 
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(generatedObjectsParent.transform.GetChild(i).gameObject);
+        }
+
+    }
+
+    private void GenerateNewClothes()
+    {
+        //2d
+        if (chosenPreset.chest2dDesign)
+            Chest2DPlacer.GenerateImageOnChest(chosenPreset.chest2dDesign);
+
+        //3d
+        foreach(Keypoint3dObjectPreset preset in chosenPreset.keypoint3DObjects)
+        {
+            Keypoint3DPlacer.GeneratePreset(preset);
+        }
 
     }
 }
@@ -65,18 +138,14 @@ public class Keypoint3dObjectPreset
 {
     [Header("Target")]
     public Body.KeypointID targetKeypoint = Body.KeypointID.LeftShoulder;
-    [Range(0f, 1f)] public float minScore = 0.25f;
 
     [Header("Prefab & Placement")]
     public GameObject prefab;              // your 3D object (duck/wing/etc.)
     public Transform worldParent;          // default = canvasCamera.transform
-    public float worldDepthMeters = 1.6f;  // distance along camera forward
-    public Vector3 worldLocalOffset = Vector3.zero; // small tweak in local space after placement
     public Vector3 worldLocalScale = Vector3.one;
 
-    public enum RotationMode { None, FaceCamera, FaceCameraPlusScreenRoll, LookAtOtherKeypoint }
     [Header("Rotation")]
-    public RotationMode rotationMode = RotationMode.FaceCamera;
+    public RotationMode rotationMode = RotationMode.None;
     public Body.KeypointID otherKeypoint = Body.KeypointID.RightShoulder; // used for roll/look-at
     public float rotationOffsetDeg = 0f;
 
